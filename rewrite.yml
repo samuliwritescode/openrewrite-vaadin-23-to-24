@@ -1,0 +1,56 @@
+type: specs.openrewrite.org/v1beta/recipe
+name: org.samuliwritescode.BookstoreExampleVaadin23ToVaadin24
+recipeList:
+  - org.openrewrite.maven.ChangePropertyValue:
+        key: vaadin.version
+        newValue: 24.3.10
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: javax.servlet
+      oldArtifactId: javax.servlet-api
+      newGroupId: jakarta.servlet
+      newArtifactId: jakarta.servlet-api
+      newVersion: 6.0.0
+  - org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId:
+      oldGroupId: javax.validation
+      oldArtifactId: validation-api
+      newGroupId: jakarta.validation
+      newArtifactId: jakarta.validation-api
+      newVersion: 3.0.2
+  - org.openrewrite.maven.UpgradeDependencyVersion:
+      groupId: org.hibernate.validator
+      artifactId: hibernate-validator
+      newVersion: 8.0.0.Final
+  - org.openrewrite.maven.UpgradePluginVersion:
+      groupId: org.eclipse.jetty
+      artifactId: jetty-maven-plugin
+      newVersion: 11.0.20
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: com.vaadin.flow.data.renderer.TemplateRenderer
+      newFullyQualifiedTypeName: com.vaadin.flow.data.renderer.LitRenderer
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: com.vaadin.flow.component.ironlist.IronList
+      newFullyQualifiedTypeName: com.vaadin.flow.component.virtuallist.VirtualList
+  - org.openrewrite.text.FindAndReplace:
+     find: 'import javax.validation'
+     replace: 'import jakarta.validation'
+     filePattern: '**/*.java'
+  - org.openrewrite.text.FindAndReplace:
+      find: 'import javax.servlet'
+      replace: 'import jakarta.servlet'
+      filePattern: '**/*.java'
+  - org.openrewrite.text.FindAndReplace:
+      find: 'new RouterLink(null,'
+      replace: 'new RouterLink((String) null,'
+      filePattern: '**/*.java'
+  - org.openrewrite.text.FindAndReplace:
+      find: 'iron-icon'
+      replace: 'vaadin-icon'
+      filePattern: '**/*.java'
+  - org.openrewrite.text.FindAndReplace:
+      find: '[['
+      replace: '$\{'
+      filePattern: '**/*.java'
+  - org.openrewrite.text.FindAndReplace:
+      find: ']]'
+      replace: '\}'
+      filePattern: '**/*.java'
