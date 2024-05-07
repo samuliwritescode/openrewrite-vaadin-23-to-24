@@ -38,7 +38,7 @@ In fact the sample application that you see here is the Vaadin 23 version of the
 In a nutshell you need two things or in this case they are added on top of the original Bookstore example already.
 
 - [rewrite.yml](rewrite.yml) file at your project root.
-- rewrite-maven-plugin plugin in your [pom.xml](pom.xml) or invoke maven plugin directly from the command line.
+- rewrite-maven-plugin plugin in your [pom.xml](pom.xml#L145) or invoke maven plugin directly from the command line.
 
 This is all you need in terms of how configuration goes. Then you simply run maven mvn rewrite:run and your codebase is
 being automatically migrated based on recipe(s) found in [rewrite.yml](rewrite.yml). Console output will list changes
