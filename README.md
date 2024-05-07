@@ -19,9 +19,11 @@ Migration automation could be characterized as being search and replace on stero
 modify your code because migration automation tools are understanding your programming language level constructs instead
 of just being dumb text replacement.
 
-The tool that we are going to use in this tutorial is OpenRewrite by Moderne. OpenRewrite is based on lossless semantic
-trees or LSTs, that holds type information in addition to textual formatting. It is free and open source and there are
-plenty of 3rd party migration recipes available.
+The tool that we are going to use in this tutorial is [OpenRewrite by Moderne](https://docs.openrewrite.org/).
+OpenRewrite is based
+on [lossless semantic trees](https://docs.openrewrite.org/concepts-explanations/lossless-semantic-trees) or LSTs, that
+holds type information in addition to textual formatting. It is free and open source and there are plenty of 3rd party
+migration recipes available.
 
 ## In practical terms
 
@@ -35,23 +37,27 @@ In fact the sample application that you see here is the Vaadin 23 version of the
 
 In a nutshell you need two things or in this case they are added on top of the original Bookstore example already.
 
-- rewrite.yml file at your project root.
-- rewrite-maven-plugin plugin in your pom.xml or invoke maven plugin directly from the command line.
+- [rewrite.yml](rewrite.yml) file at your project root.
+- rewrite-maven-plugin plugin in your [pom.xml](pom.xml) or invoke maven plugin directly from the command line.
 
 This is all you need in terms of how configuration goes. Then you simply run maven mvn rewrite:run and your codebase is
-being automatically migrated based on recipe(s) found in rewrite.yml. Console output will list changes and if you cloned
+being automatically migrated based on recipe(s) found in [rewrite.yml](rewrite.yml). Console output will list changes
+and if you cloned
 this as a git repository, you can also see the changes in git uncommited changes where you can compare what kind of
 changes were made.
 
 ## Takeaways
 
-rewrite.yml that is included here is no means an exhaustive list of changes between Vaadin 23 and Vaadin 24 but instead
+[rewrite.yml](rewrite.yml) that is included here is no means an exhaustive list of changes between Vaadin 23 and Vaadin
+24 but instead
 a demonstrative list of what kinds of tasks would a typical migration would include. In usual use cases you would write
-rewrite.yml based on what kind of changes your specific codebase requires. In the example of Bookstore there is no
+[rewrite.yml](rewrite.yml) based on what kind of changes your specific codebase requires. In the example of Bookstore
+there is no
 migration recipes related to Spring Boot 3.0, so breaking changes of Spring Boot 3 are not addressed. This is because
 Bookstore is not using Spring at all.
 
 If you found migration automation appealing in your use case then give it a shot! You may start by taking the example
-rewrite.yml and extend it based on your codebase needs. When your migration effort grows, and you cannot reasonably to
+[rewrite.yml](rewrite.yml) and extend it based on your codebase needs. When your migration effort grows, and you cannot
+reasonably to
 have just one single atomic migration recipe, you could add more than one and run them individually and do manual
 changes in between runs.
