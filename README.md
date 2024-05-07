@@ -1,4 +1,4 @@
-# OpenRewrite example to migrate Vaadin Bookstore example from Vaadin 23 to Vaadin 24.
+# OpenRewrite example to migrate Vaadin Bookstore example from Vaadin 23 to Vaadin 24
 
 ## Migrations are pain
 
