@@ -1,51 +1,57 @@
-# Bookstore App Starter for Vaadin
+# OpenRewrite example to migrate Vaadin Bookstore example from Vaadin 23 to Vaadin 24.
 
-A project example for a Vaadin application that only requires a Servlet 3.1 container to run (no other JEE dependencies). The UI is built with Java only.
+## Migrations are pain.
 
-The easiest way of using it is via [https://vaadin.com/start](https://vaadin.com/start) - you can choose the package naming you want.
+Newer version of library or framework that you are using is introducing a breaking change that you now must deal with
+modifying your code. Sometimes having to do these modifications is just a risk and additional work for you if you were
+happy with the functionality that the current in production version offers and the only reason to update is not to fall
+too much behind which will eventually lead into not having support at all.
 
-## Prerequisites
+## Sometimes you get lucky and sometimes you don't.
 
-The project can be imported into the IDE of your choice, with Java 8 or 11 installed, as a Maven project.
+If it's just few compilation errors that are due to renamed method or changed package name, then it is easy to just
+rename your calls, and you are good to go again, but when your codebase is large and there are more than just few
+changes that you cannot reasonably search and replace, then something like migration automation comes in very handy.
 
-## Project Structure
+## How to deal situations when you are unlucky.
 
-The project is following the standard [Maven project layout](https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html).
+Migration automation could be characterized as being search and replace on steroids. You have more control over how to
+modify your code because migration automation tools are understanding your programming language level constructs instead
+of just being dumb text replacement.
 
-## Workflow
+The tool that we are going to use in this tutorial is OpenRewrite by Moderne. OpenRewrite is based on lossless semantic
+trees or LSTs, that holds type information in addition to textual formatting. It is free and open source and there are
+plenty of 3rd party migration recipes available.
 
-To compile the entire project, run "mvn install" in the project root.
+## In practical terms
 
-Other basic workflow steps:
+This tutorial gives your pointers how to approach migrating your project in automated fashion by using OpenRewrite. This
+is not to provide full and comprehensive library of OpenRewrite recipes but more of an idea provocation. We are going to
+take older version of Vaadin example application Bookstore that is still using Vaadin 23 and creating OpenRewrite recipe
+to migrate it to using latest Vaadin 24 version.
 
-- getting started
-- compiling the whole project
-  - run `mvn install` in project root
-- developing the application
-  - edit code in src/main
-  - run `mvn`
-  - open http://localhost:8080/
-- creating a production mode war
-  - run `mvn package -Pproduction` 
-- running in production mode
-  - run `mvn jetty:run -Pproduction`
-  - open http://localhost:8080/
+In fact the sample application that you see here is the Vaadin 23 version of the Bookstore example and to get the Vaadin
+24 version of it you would run OpenRewrite locally.
 
-### Running Integration Tests
+In a nutshell you need two things or in this case they are added on top of the original Bookstore example already.
 
-Integration tests are implemented using TestBench. The tests take a few minutes to run and are therefore included in a separate Maven profile. To run the tests using Google Chrome, execute
+- rewrite.yml file at your project root.
+- rewrite-maven-plugin plugin in your pom.xml or invoke maven plugin directly from the command line.
 
-`mvn verify -Pit`
+This is all you need in terms of how configuration goes. Then you simply run maven mvn rewrite:run and your codebase is
+being automatically migrated based on recipe(s) found in rewrite.yml. Console output will list changes and if you cloned
+this as a git repository, you can also see the changes in git uncommited changes where you can compare what kind of
+changes were made.
 
-and make sure you have a valid TestBench license installed. If the tests fail because of an old Chrome Driver or you want to use a different browser, you'll need to update the webdrivers.xml file in the project root.
+## Takeaways
 
-Profile `it` adds the following parameters to run integration tests:
-```sh
--Dwebdriver.chrome.driver=path_to_driver
--Dcom.vaadin.testbench.Parameters.runLocally=chrome
-```
+rewrite.yml that is included here is no means an exhaustive list of changes between Vaadin 23 and Vaadin 24 but instead
+a demonstrative list of what kinds of tasks would a typical migration would include. In usual use cases you would write
+rewrite.yml based on what kind of changes your specific codebase requires. In the example of Bookstore there is no
+migration recipes related to Spring Boot 3.0, so breaking changes of Spring Boot 3 are not addressed. This is because
+Bookstore is not using Spring at all.
 
-If you would like to run a separate test make sure you have added these parameters to VM Options of JUnit run configuration
-
-### Branching information:
-* `master` the latest version of the starter, using the latest platform version
+If you found migration automation appealing in your use case then give it a shot! You may start by taking the example
+rewrite.yml and extend it based on your codebase needs. When your migration effort grows, and you cannot reasonably to
+have just one single atomic migration recipe, you could add more than one and run them individually and do manual
+changes in between runs.
