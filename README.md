@@ -1,19 +1,19 @@
 # OpenRewrite example to migrate Vaadin Bookstore example from Vaadin 23 to Vaadin 24.
 
-## Migrations are pain.
+## Migrations are pain
 
 Newer version of library or framework that you are using is introducing a breaking change that you now must deal with
 modifying your code. Sometimes having to do these modifications is just a risk and additional work for you if you were
 happy with the functionality that the current in production version offers and the only reason to update is not to fall
 too much behind which will eventually lead into not having support at all.
 
-## Sometimes you get lucky and sometimes you don't.
+## Sometimes you get lucky and sometimes you don't
 
 If it's just few compilation errors that are due to renamed method or changed package name, then it is easy to just
 rename your calls, and you are good to go again, but when your codebase is large and there are more than just few
 changes that you cannot reasonably search and replace, then something like migration automation comes in very handy.
 
-## How to deal situations when you are unlucky.
+## How to deal situations when you are unlucky
 
 Migration automation could be characterized as being search and replace on steroids. You have more control over how to
 modify your code because migration automation tools are understanding your programming language level constructs instead
