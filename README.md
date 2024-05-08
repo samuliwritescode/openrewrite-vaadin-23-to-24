@@ -29,7 +29,7 @@ migration recipes available.
 
 This tutorial gives your pointers how to approach migrating your project in automated fashion by using OpenRewrite. This
 is not to provide full and comprehensive library of OpenRewrite recipes but more of an idea provocation. We are going to
-take older version of Vaadin example application [Bookstore](https://github.com/vaadin/bookstore-example) that is still
+take older branch of Vaadin example application [Bookstore](https://github.com/vaadin/bookstore-example) that is
 using Vaadin 23 and creating OpenRewrite recipe to migrate it to using latest Vaadin 24 version.
 
 In fact the sample application that you see here is the Vaadin 23 version of the Bookstore example and to get the Vaadin
