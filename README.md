@@ -1,11 +1,17 @@
 # OpenRewrite example to migrate Vaadin Bookstore example from Vaadin 23 to Vaadin 24
 
+New version gets released of your favourite library or framework, and it contains new features, bug and security fixes.
+Just bump the version number and you are golden. What's not to like there. We all love new shiny things, especially if
+we get them easily or even free.
+
 ## Migrations are pain
 
-Newer version of library or framework that you are using is introducing a breaking change that you now must deal with
-modifying your code. Sometimes having to do these modifications is just a risk and additional work for you if you were
-happy with the functionality that the current in production version offers and the only reason to update is not to fall
-too much behind which will eventually lead into not having support at all.
+But often the version update is introducing a breaking change that you now must deal by modifying your code.
+Version update has become a migration. Sometimes having to do these modifications is just a risk and additional work for
+you if those features and fixes are not worth the trouble of migrating. But you can not completely avoid that work
+either. Postponing the migration to a later time would be collecting technical debt that would eventually have to be
+paid off. At the latest when the support gets shut off from the old version, and then you are on your own with no
+security fixes.
 
 ## Sometimes you get lucky and sometimes you don't
 
